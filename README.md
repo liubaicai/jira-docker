@@ -17,10 +17,8 @@ jira-docker
 ├── jira
 │   ├── crack .................. [docker 构建剧本]
 │   ├── atlassian .............. [jira web 数据]
-│   │   ├── export ............. [导出备份数据目录]
-│   │   └── import ............. [导入备份数据目录]
-│   └── conf
-│       └── server.xml ......... [jira web 配置]
+│        ├── export ............. [导出备份数据目录]
+│        └── import ............. [导入备份数据目录]
 ├── mysql
 │   ├── data ................... [mysql 数据库文件]
 │   └── driver ................. [mysql JDBC 驱动]
@@ -50,8 +48,9 @@ jira-docker
   - Application Title:  Anyone JIRA
   - Mode:               Private
   - Base URL:           http://127.0.0.1:8080
-- 点击 `Next`，此时会提供 Server ID，并要求填写 Your License Key。由于这是破解版（破解原理见下文），这里只需要随便填一个符合格式的 License 即可（此处会做前端的格式校验），例如这个试用版的 License（申请方式见下文，但若没必要就不需要申请了）：
+- 点击 `Next`，此时会提供 Server ID，并要求填写 Your License Key。
 
+↓↓↓↓↓↓错误的 License Key ↓↓↓↓↓↓
 ```
 AAAB2g0ODAoPeNp9kttum0AQhu95CqTetKpAHHyoLa1UAhsFAtgF6iqWb9YwNqQY8AJOePtysuwGx
 3c72jl88//zxQtL1iIVKwmsIM+lybx+qJpXx5LI/IVqBTSP0gSJE0GYCj9kWWT2FCAJ0ywDypuRD
@@ -63,6 +62,11 @@ eHC8rlBN2y8JWitVc2ckMT/RNQ7Kw8M7efUGpu65mKbM8WpOB2PZkLX5qNGdQq6kXZ7mlsQ2lTuS
 JwDs6B7kkQ5adceeK1SaH8+XlZvyvnqpf9UasEyGuW92RpcFDdqFNbtUdivzSJst8m3zZzFJxKX7
 cBugcHJ3DHgmuC67tKzi/8BJN5ISjAsAhRZIHEuQbkGoHCRSit5W4n8GSiYNQIUK0cCnanxR3KFT
 lht2tUwCQi3GkE=X02mi
+```
+↓↓↓↓↓↓正确的 License Key ↓↓↓↓↓↓
+``` shell
+# https://gitee.com/wang-huamao/soft/raw/ec4d117f2f43ad16a495c0a85bbc6801e7322546/confluence/atlassian-agent.jar
+java -jar atlassian-agent.jar -d -m admin@admin.com -n Jira -p jira -o http://192.168.199.152:8080 -s B8W9-2OHG-NBAK-WKEM
 ```
 
 - 点击 `Next`，此时会要求填写 JIRA 管理员信息：
